@@ -47,6 +47,13 @@ Typical checks:
 - allowed file types match the artifact
 - path boundary is intact
 
-## Design Rule
+## When This Is Wrong
 
-The decision gate should produce structured check results. It should not produce a vague boolean.
+The decision gate is the wrong layer for:
+
+- mutating files
+- retrying provider calls
+- hiding failed checks behind a single boolean
+- turning approval into execution authority
+
+It should explain why work is ready or blocked. Execution belongs to a later boundary.

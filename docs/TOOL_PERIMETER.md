@@ -43,6 +43,6 @@ Search and read canonical Markdown documents. Useful for retrieval without scann
 
 Run explicit build/test commands and parse structured results.
 
-## Design Rule
+## Operational Boundary
 
-The tool perimeter should make dangerous capabilities boring: explicit, narrow, logged, and easy to deny.
+The tool perimeter should keep dangerous capabilities explicit, narrow, logged, and easy to deny.

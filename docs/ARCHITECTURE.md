@@ -56,7 +56,7 @@ The `runtime-kernel/` directory contains a small implementation of the same boun
 - preflight decision checks
 - stable ledger record creation
 
-The implementation is deliberately pure. It has no network calls, no provider SDK, no file writes, and no hidden runtime state.
+The implementation has no network calls, no provider SDK, no file writes, and no hidden runtime state.
 
 ## Design Constraint
 

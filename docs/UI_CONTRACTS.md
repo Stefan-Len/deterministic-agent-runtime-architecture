@@ -33,6 +33,6 @@ A complete host can eventually render:
 - recovery readiness
 - provider/model selection
 
-## Design Rule
+## State Boundary
 
 UI state should be derived from runtime contracts and event records. It should not infer hidden state from unstructured text.

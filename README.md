@@ -18,15 +18,11 @@ The focus is not on a specific product or domain. The focus is the engineering m
 - how to expose UI-ready read models without moving runtime authority into the UI
 - how the same boundaries look as small, executable runtime code
 
-## Runtime Principles
+## Runtime Posture
 
-1. Contracts before execution.
-2. Context is selected, not guessed.
-3. Providers are adapters, not authorities.
-4. Tools run inside a perimeter.
-5. Writes require approval, preflight, and recovery readiness.
-6. Audit records are structured, not narrative afterthoughts.
-7. UI surfaces consume contracts; they do not own runtime logic.
+- Contracts define what can happen before anything runs.
+- Context, provider choice, and tool access are explicit runtime decisions.
+- Writes require approval, preflight, and recovery readiness.
 
 ## Repository Map
 
@@ -49,7 +45,7 @@ The focus is not on a specific product or domain. The focus is the engineering m
 
 ## Executable Kernel
 
-The repository includes a compact runtime kernel. It is intentionally pure and dependency-free:
+The repository includes a compact runtime kernel with no network calls, provider SDKs, file writes, or external dependencies:
 
 - `context-vault/selectContextRecords.mjs` selects scoped context and excludes local-only records from provider context
 - `decision-gate/buildPreflightResult.mjs` evaluates approval, recovery, path, and file type checks
@@ -64,7 +60,7 @@ npm run verify
 
 ## Example Contracts
 
-The examples are intentionally sanitized. They show structure, not business logic.
+The examples are sanitized. They show structure, not business logic.
 
 - [`action-contract.example.json`](examples/contracts/action-contract.example.json)
 - [`approval-ticket.example.json`](examples/contracts/approval-ticket.example.json)

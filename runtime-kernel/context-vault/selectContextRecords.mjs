@@ -5,7 +5,7 @@
 /**
  * Selects context records deterministically for a runtime action.
  *
- * The selector is intentionally narrow:
+ * Selection rules:
  * - exact action id matches first
  * - wildcard records are allowed as shared baseline context
  * - local-only records never enter provider context
@@ -19,6 +19,7 @@
  */
 export function selectContextRecords({ actionId, requiredScopes = [], records }) {
   const scopeSet = new Set(requiredScopes);
+  const selectedRecords = [];
 
   const trace = records.map((record) => {
     const matchesAction =
@@ -28,31 +29,46 @@ export function selectContextRecords({ actionId, requiredScopes = [], records })
     const matchesScope = scopeSet.size === 0 || scopeSet.has(record.scope);
     const selected = matchesAction && matchesScope;
 
+    if (selected) {
+      selectedRecords.push(record);
+    }
+
     return {
       recordId: record.recordId,
       scope: record.scope,
       selected,
-      reason: selected ? "matched-action-and-scope" : "not-required-for-action",
+      reason: contextSelectionReason({ selected, matchesAction, matchesScope }),
       providerEligible: selected && record.visibility === "provider-safe-summary"
     };
   });
 
-  const selectedRecords = records
-    .filter((record) => {
-      const entry = trace.find((item) => item.recordId === record.recordId);
-      return entry?.selected === true;
-    })
-    .toSorted(compareContextRecords);
+  const orderedSelectedRecords = selectedRecords.toSorted(compareContextRecords);
 
-  const providerRecords = selectedRecords.filter(
+  const providerRecords = orderedSelectedRecords.filter(
     (record) => record.visibility === "provider-safe-summary"
   );
 
   return {
-    selectedRecords,
+    selectedRecords: orderedSelectedRecords,
     providerRecords,
     trace
   };
+}
+
+function contextSelectionReason({ selected, matchesAction, matchesScope }) {
+  if (selected) {
+    return "matched-action-and-scope";
+  }
+
+  if (!matchesAction) {
+    return "action-mismatch";
+  }
+
+  if (!matchesScope) {
+    return "scope-mismatch";
+  }
+
+  return "not-selected";
 }
 
 function compareContextRecords(left, right) {

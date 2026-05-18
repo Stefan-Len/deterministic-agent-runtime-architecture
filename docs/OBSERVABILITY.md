@@ -1,6 +1,6 @@
 # Observability
 
-Observability is a first-class runtime boundary. The system should not rely on a human reading chat history to understand what happened.
+Observability is part of the runtime boundary. The system should not rely on a human reading chat history to understand what happened.
 
 ## Execution Ledger
 
