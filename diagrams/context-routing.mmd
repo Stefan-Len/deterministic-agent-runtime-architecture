@@ -3,10 +3,10 @@
 %% SPDX-License-Identifier: MIT
 
 flowchart TD
-    Records["Context Records"] --> Selector["Deterministic Selector"]
-    Selector --> Local["Local-Only Context"]
-    Selector --> Safe["Provider-Safe Summary"]
-    Selector --> Public["Public Reference"]
-    Safe --> Provider["Provider Adapter"]
-    Public --> Artifacts["Artifacts / Docs"]
-    Local --> Runtime["Runtime Checks"]
+    Records["Context Records"] --- Selector["Deterministic Selector"]
+    Selector --- Local["Local-Only Context"]
+    Selector --- Safe["Provider-Safe Summary"]
+    Selector --- Public["Public Reference"]
+    Safe --- Provider["Provider Adapter"]
+    Public --- Artifacts["Artifacts / Docs"]
+    Local --- Runtime["Runtime Checks"]
