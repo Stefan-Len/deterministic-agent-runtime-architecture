@@ -49,7 +49,7 @@ Stores structured records for meaningful runtime events. The ledger is not a raw
 
 ## Executable Kernel
 
-The `runtime-kernel/` directory contains a small implementation of the same boundaries:
+The `runtime-kernel/` directory contains a small TypeScript implementation of the same boundaries:
 
 - deterministic context selection
 - provider profile routing

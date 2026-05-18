@@ -5,10 +5,16 @@
   "type": "module",
   "description": "Architecture showcase for deterministic agent runtimes with explicit contracts and execution safety boundaries.",
   "scripts": {
-    "verify": "node --test verification-suite/*.test.mjs"
+    "typecheck": "tsc --noEmit",
+    "verify": "node --import tsx --test verification-suite/*.test.ts"
   },
   "engines": {
     "node": ">=20"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
 }

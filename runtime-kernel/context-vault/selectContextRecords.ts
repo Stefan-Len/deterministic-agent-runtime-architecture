@@ -2,24 +2,20 @@
 // Copyright (c) 2026 Stefan Len
 // SPDX-License-Identifier: MIT
 
-/**
- * Selects context records deterministically for a runtime action.
- *
- * Selection rules:
- * - exact action id matches first
- * - wildcard records are allowed as shared baseline context
- * - local-only records never enter provider context
- * - output ordering is stable by scope and record id
- *
- * @param {object} input
- * @param {string} input.actionId
- * @param {readonly string[]} [input.requiredScopes]
- * @param {readonly object[]} input.records
- * @returns {{selectedRecords: readonly object[], providerRecords: readonly object[], trace: readonly object[]}}
- */
-export function selectContextRecords({ actionId, requiredScopes = [], records }) {
+import type {
+  ContextRecord,
+  ContextSelectionInput,
+  ContextSelectionReason,
+  ContextSelectionResult
+} from "../contracts/contextRecord.ts";
+
+export function selectContextRecords({
+  actionId,
+  requiredScopes = [],
+  records
+}: ContextSelectionInput): ContextSelectionResult {
   const scopeSet = new Set(requiredScopes);
-  const selectedRecords = [];
+  const selectedRecords: ContextRecord[] = [];
 
   const trace = records.map((record) => {
     const matchesAction =
@@ -55,7 +51,15 @@ export function selectContextRecords({ actionId, requiredScopes = [], records })
   };
 }
 
-function contextSelectionReason({ selected, matchesAction, matchesScope }) {
+function contextSelectionReason({
+  selected,
+  matchesAction,
+  matchesScope
+}: {
+  readonly selected: boolean;
+  readonly matchesAction: boolean;
+  readonly matchesScope: boolean;
+}): ContextSelectionReason {
   if (selected) {
     return "matched-action-and-scope";
   }
@@ -71,7 +75,10 @@ function contextSelectionReason({ selected, matchesAction, matchesScope }) {
   return "not-selected";
 }
 
-function compareContextRecords(left, right) {
+function compareContextRecords(
+  left: ContextRecord,
+  right: ContextRecord
+): number {
   const scopeComparison = String(left.scope).localeCompare(String(right.scope));
   if (scopeComparison !== 0) {
     return scopeComparison;

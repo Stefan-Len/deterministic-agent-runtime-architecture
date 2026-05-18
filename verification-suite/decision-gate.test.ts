@@ -4,21 +4,21 @@
 
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildPreflightResult } from "../runtime-kernel/index.mjs";
+import { buildPreflightResult } from "../runtime-kernel/index.ts";
 
 const approvedTicket = {
   approvalId: "approval_01",
-  decision: "approved",
+  decision: "approved" as const,
   requiresRecoveryPointBeforeWrite: true,
   allowedPaths: ["runtime-kernel/**", "verification-suite/**"],
-  allowedFileTypes: [".mjs", ".md", ".json"]
+  allowedFileTypes: [".ts", ".md", ".json"]
 };
 
 test("returns ready when approval, recovery point, paths, and file types pass", () => {
   const result = buildPreflightResult({
     approvalTicket: approvedTicket,
     recoveryPoints: [{ approvalId: "approval_01", status: "prepared" }],
-    proposedChanges: [{ path: "runtime-kernel/decision-gate/buildPreflightResult.mjs" }]
+    proposedChanges: [{ path: "runtime-kernel/decision-gate/buildPreflightResult.ts" }]
   });
 
   assert.equal(result.status, "ready");
@@ -29,7 +29,7 @@ test("blocks when a prepared recovery point is missing", () => {
   const result = buildPreflightResult({
     approvalTicket: approvedTicket,
     recoveryPoints: [{ approvalId: "approval_01", status: "committed" }],
-    proposedChanges: [{ path: "runtime-kernel/decision-gate/buildPreflightResult.mjs" }]
+    proposedChanges: [{ path: "runtime-kernel/decision-gate/buildPreflightResult.ts" }]
   });
 
   assert.equal(result.status, "blocked");

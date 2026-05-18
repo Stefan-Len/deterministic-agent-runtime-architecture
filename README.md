@@ -40,21 +40,22 @@ The focus is not on a specific product or domain. The focus is the engineering m
 | [`examples/contracts/`](examples/contracts) | Sanitized contract examples. |
 | [`examples/flows/`](examples/flows) | Example runtime flows. |
 | [`diagrams/`](diagrams) | Mermaid architecture diagrams. |
-| [`runtime-kernel/`](runtime-kernel) | Small executable kernel for context selection, provider routing, preflight checks, and ledger records. |
-| [`verification-suite/`](verification-suite) | Zero-dependency Node verification suite for the runtime kernel. |
+| [`runtime-kernel/`](runtime-kernel) | Small TypeScript kernel for context selection, provider routing, preflight checks, and ledger records. |
+| [`verification-suite/`](verification-suite) | Node verification suite for the runtime kernel. |
 
 ## Executable Kernel
 
-The repository includes a compact runtime kernel with no network calls, provider SDKs, file writes, or external dependencies:
+The repository includes a compact TypeScript runtime kernel with no network calls, provider SDKs, or file writes:
 
-- `context-vault/selectContextRecords.mjs` selects scoped context and excludes local-only records from provider context
-- `decision-gate/buildPreflightResult.mjs` evaluates approval, recovery, path, and file type checks
-- `provider-router/chooseProviderProfile.mjs` makes deterministic provider-profile decisions
-- `execution-ledger/createLedgerRecord.mjs` creates stable ledger ids from canonical event input
+- `context-vault/selectContextRecords.ts` selects scoped context and excludes local-only records from provider context
+- `decision-gate/buildPreflightResult.ts` evaluates approval, recovery, path, and file type checks
+- `provider-router/chooseProviderProfile.ts` makes deterministic provider-profile decisions
+- `execution-ledger/createLedgerRecord.ts` creates stable ledger ids from canonical event input
 
-Run the verification suite:
+Run the typecheck and verification suite:
 
 ```bash
+npm run typecheck
 npm run verify
 ```
 

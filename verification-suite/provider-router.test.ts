@@ -4,7 +4,7 @@
 
 import assert from "node:assert/strict";
 import test from "node:test";
-import { chooseProviderProfile } from "../runtime-kernel/index.mjs";
+import { chooseProviderProfile } from "../runtime-kernel/index.ts";
 
 test("chooses the first available provider profile for the required tier", () => {
   const decision = chooseProviderProfile({
@@ -26,6 +26,7 @@ test("chooses the first available provider profile for the required tier", () =>
     ]
   });
 
+  assert.equal(decision.status, "selected");
   assert.equal(decision.providerId, "provider-beta");
   assert.deepEqual(decision.fallbackChain, ["provider-alpha", "provider-beta"]);
 });
@@ -44,6 +45,9 @@ test("returns an unavailable decision when no profile can satisfy the tier", () 
     ]
   });
 
-  assert.equal(decision.providerId, "none");
-  assert.equal(decision.modelProfileId, "unavailable");
+  assert.deepEqual(decision, {
+    status: "unavailable",
+    decisionReason: "No available provider profile for tier large-reasoning.",
+    fallbackChain: ["provider-alpha"]
+  });
 });

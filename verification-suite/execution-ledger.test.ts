@@ -4,7 +4,7 @@
 
 import assert from "node:assert/strict";
 import test from "node:test";
-import { createLedgerRecord, stableSerialize } from "../runtime-kernel/index.mjs";
+import { createLedgerRecord, stableSerialize } from "../runtime-kernel/index.ts";
 
 test("creates deterministic ledger ids for the same canonical input", () => {
   const input = {

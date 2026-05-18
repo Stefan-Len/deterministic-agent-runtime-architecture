@@ -3,24 +3,12 @@
 // SPDX-License-Identifier: MIT
 
 import { createHash } from "node:crypto";
+import type {
+  LedgerRecord,
+  LedgerRecordInput
+} from "../contracts/ledgerRecord.ts";
 
-/**
- * Creates a stable execution ledger record.
- *
- * The event id is derived from the canonical record input. This keeps repeated
- * runs reproducible when the same timestamp and payload are supplied.
- *
- * @param {object} input
- * @param {string} input.timestamp
- * @param {string} input.eventType
- * @param {string} input.actorId
- * @param {string} input.actionId
- * @param {string} input.workItemId
- * @param {string} input.correlationId
- * @param {object} input.summary
- * @returns {object}
- */
-export function createLedgerRecord(input) {
+export function createLedgerRecord(input: LedgerRecordInput): LedgerRecord {
   const canonicalInput = stableSerialize(input);
   const eventId = `ledger_${createHash("sha256")
     .update(canonicalInput)
@@ -34,18 +22,18 @@ export function createLedgerRecord(input) {
   };
 }
 
-export function stableSerialize(value) {
+export function stableSerialize(value: unknown): string {
   return JSON.stringify(sortValue(value));
 }
 
-function sortValue(value) {
+function sortValue(value: unknown): unknown {
   if (Array.isArray(value)) {
     return value.map(sortValue);
   }
 
   if (value && typeof value === "object") {
     return Object.fromEntries(
-      Object.entries(value)
+      Object.entries(value as Record<string, unknown>)
         .sort(([left], [right]) => left.localeCompare(right))
         .map(([key, nestedValue]) => [key, sortValue(nestedValue)])
     );

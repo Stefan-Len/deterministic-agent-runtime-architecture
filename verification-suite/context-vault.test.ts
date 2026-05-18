@@ -4,7 +4,7 @@
 
 import assert from "node:assert/strict";
 import test from "node:test";
-import { selectContextRecords } from "../runtime-kernel/index.mjs";
+import { selectContextRecords } from "../runtime-kernel/index.ts";
 
 test("selects context records deterministically and excludes local-only records from provider context", () => {
   const result = selectContextRecords({
@@ -14,19 +14,19 @@ test("selects context records deterministically and excludes local-only records 
       {
         recordId: "context.workspace.local-note",
         scope: "active-workspace",
-        visibility: "local-only",
+        visibility: "local-only" as const,
         actionId: "runtime.plan-change-set"
       },
       {
         recordId: "context.architecture.contracts",
         scope: "architecture",
-        visibility: "provider-safe-summary",
+        visibility: "provider-safe-summary" as const,
         actionId: "*"
       },
       {
         recordId: "context.unrelated",
         scope: "billing",
-        visibility: "provider-safe-summary",
+        visibility: "provider-safe-summary" as const,
         actionId: "*"
       }
     ]
