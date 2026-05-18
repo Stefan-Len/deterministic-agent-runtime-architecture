@@ -88,4 +88,3 @@ The artifact is the system shape: the runtime boundaries, safety model, and cont
 ## Author
 
 Stefan Len  
-stefanlen@qde-systems.com
