@@ -3,11 +3,11 @@
 %% SPDX-License-Identifier: MIT
 
 flowchart TD
-    Host["Host Request"] --> Runtime["Action Contract"]
-    Runtime --> Vault["Context Vault"]
-    Vault --> Router["Provider Router"]
-    Router --> Artifact["Proposal Artifact"]
-    Artifact --> Decision["Decision Gate"]
-    Decision --> Preflight["Execution Preflight"]
-    Preflight --> Ledger["Execution Ledger"]
-    Preflight --> Recovery["Recovery Point"]
+    Host["Host Request"] --- Runtime["Action Contract"]
+    Runtime --- Vault["Context Vault"]
+    Vault --- Router["Provider Router"]
+    Router --- Artifact["Proposal Artifact"]
+    Artifact --- Decision["Decision Gate"]
+    Decision --- Preflight["Execution Preflight"]
+    Preflight --- Ledger["Execution Ledger"]
+    Preflight --- Recovery["Recovery Point"]

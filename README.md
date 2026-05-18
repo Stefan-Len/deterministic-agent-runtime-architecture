@@ -26,14 +26,14 @@ The focus is not on a specific product or domain. The focus is the engineering m
 
 ```mermaid
 flowchart LR
-    Request["Host Request"] --> Contract["Action Contract"]
-    Contract --> Context["Context Vault"]
-    Context --> Router["Provider Router"]
-    Router --> Artifact["Proposal Artifact"]
-    Artifact --> Gate["Decision Gate"]
-    Gate --> Preflight["Execution Preflight"]
-    Preflight --> Ledger["Execution Ledger"]
-    Preflight --> Recovery["Recovery Point"]
+    Request["Host Request"] --- Contract["Action Contract"]
+    Contract --- Context["Context Vault"]
+    Context --- Router["Provider Router"]
+    Router --- Artifact["Proposal Artifact"]
+    Artifact --- Gate["Decision Gate"]
+    Gate --- Preflight["Execution Preflight"]
+    Preflight --- Ledger["Execution Ledger"]
+    Preflight --- Recovery["Recovery Point"]
 ```
 
 ## Repository Map
