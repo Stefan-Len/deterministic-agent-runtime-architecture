@@ -68,10 +68,6 @@ function contextSelectionReason({
     return "action-mismatch";
   }
 
-  if (!matchesScope) {
-    return "scope-mismatch";
-  }
-
   return "scope-mismatch";
 }
 
