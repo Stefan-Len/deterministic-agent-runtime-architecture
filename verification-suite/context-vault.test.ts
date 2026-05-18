@@ -40,4 +40,48 @@ test("selects context records deterministically and excludes local-only records 
     result.providerRecords.map((record) => record.recordId),
     ["context.architecture.contracts"]
   );
+  assert.deepEqual(
+    result.trace.map((entry) => ({
+      recordId: entry.recordId,
+      reason: entry.reason,
+      providerIncluded: entry.providerIncluded
+    })),
+    [
+      {
+        recordId: "context.workspace.local-note",
+        reason: "matched-action-and-scope",
+        providerIncluded: false
+      },
+      {
+        recordId: "context.architecture.contracts",
+        reason: "matched-action-and-scope",
+        providerIncluded: true
+      },
+      {
+        recordId: "context.unrelated",
+        reason: "scope-mismatch",
+        providerIncluded: false
+      }
+    ]
+  );
+});
+
+test("selects wildcard action records when no scope filter is supplied", () => {
+  const result = selectContextRecords({
+    actionId: "runtime.plan-change-set",
+    records: [
+      {
+        recordId: "context.shared.reference",
+        scope: "architecture",
+        visibility: "public-reference" as const,
+        actionId: "*"
+      }
+    ]
+  });
+
+  assert.deepEqual(
+    result.selectedRecords.map((record) => record.recordId),
+    ["context.shared.reference"]
+  );
+  assert.equal(result.trace[0]?.reason, "matched-action-and-scope");
 });

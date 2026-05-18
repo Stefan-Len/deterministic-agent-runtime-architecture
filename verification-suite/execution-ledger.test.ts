@@ -39,3 +39,27 @@ test("stableSerialize sorts object keys recursively", () => {
     '{"nested":{"a":1,"b":2},"z":1}'
   );
 });
+
+test("creates a different ledger id when the timestamp changes", () => {
+  const first = createLedgerRecord({
+    timestamp: "2026-01-01T12:00:00.000Z",
+    eventType: "approval.requested",
+    actorId: "runtime",
+    actionId: "runtime.plan-change-set",
+    workItemId: "work_01",
+    correlationId: "corr_01",
+    summary: { approvalId: "approval_01" }
+  });
+
+  const second = createLedgerRecord({
+    timestamp: "2026-01-01T12:00:01.000Z",
+    eventType: "approval.requested",
+    actorId: "runtime",
+    actionId: "runtime.plan-change-set",
+    workItemId: "work_01",
+    correlationId: "corr_01",
+    summary: { approvalId: "approval_01" }
+  });
+
+  assert.notEqual(first.eventId, second.eventId);
+});

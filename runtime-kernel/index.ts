@@ -32,3 +32,5 @@ export type {
   LedgerRecord,
   LedgerRecordInput
 } from "./contracts/ledgerRecord.ts";
+export type { ActionContract } from "./contracts/actionContract.ts";
+export type { ToolConnector } from "./contracts/toolConnector.ts";

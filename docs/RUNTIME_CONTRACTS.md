@@ -17,7 +17,7 @@ An action contract defines:
 - recovery requirement
 - audit category
 
-See [`action-contract.example.json`](../examples/contracts/action-contract.example.json).
+See [`action-contract.example.json`](../examples/contracts/action-contract.example.json). The matching TypeScript interface is `ActionContract` in `runtime-kernel/contracts/actionContract.ts`.
 
 ## Session Contract
 
@@ -46,6 +46,16 @@ An artifact is a normalized candidate output. It should include:
 - risk summary
 - preview references
 
+## Approval Levels
+
+The reference kernel uses three approval levels:
+
+- `operator` for normal human approval of bounded work
+- `maintainer` for broader repository changes
+- `system-owner` for high-risk runtime or policy changes
+
+The kernel demonstrates the field as a contract value; it does not implement organization-specific authorization.
+
 ## Contract Rule
 
 A provider response should never become runtime authority directly. It must first pass through normalization and become a typed artifact.
@@ -56,7 +66,7 @@ The `verification-suite/` directory checks the contract behavior that is represe
 
 - context records are selected deterministically
 - local-only records are excluded from provider context
-- preflight blocks missing recovery points
+- preflight blocks unapproved work, missing recovery points, and empty change sets
 - path and file type policies are enforced
 - provider profile decisions are deterministic
 - ledger ids are stable for canonical input

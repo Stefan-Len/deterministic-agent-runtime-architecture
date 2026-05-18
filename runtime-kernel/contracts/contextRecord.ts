@@ -8,24 +8,28 @@ export type ContextVisibility =
   | "public-reference";
 
 export interface ContextRecord {
+  readonly schemaVersion?: 1;
   readonly recordId: string;
   readonly scope: string;
   readonly visibility: ContextVisibility;
   readonly actionId?: string;
+  readonly source?: string;
+  readonly selectionTags?: readonly string[];
+  readonly contentSummary?: string;
+  readonly createdAt?: string;
 }
 
 export type ContextSelectionReason =
   | "matched-action-and-scope"
   | "action-mismatch"
-  | "scope-mismatch"
-  | "not-selected";
+  | "scope-mismatch";
 
 export interface ContextSelectionTraceEntry {
   readonly recordId: string;
   readonly scope: string;
   readonly selected: boolean;
   readonly reason: ContextSelectionReason;
-  readonly providerEligible: boolean;
+  readonly providerIncluded: boolean;
 }
 
 export interface ContextSelectionInput {

@@ -51,3 +51,26 @@ test("returns an unavailable decision when no profile can satisfy the tier", () 
     fallbackChain: ["provider-alpha"]
   });
 });
+
+test("does not choose an available provider from the wrong tier", () => {
+  const decision = chooseProviderProfile({
+    actionId: "runtime.plan-change-set",
+    requiredTier: "large-reasoning",
+    profiles: [
+      {
+        providerId: "provider-alpha",
+        modelProfileId: "alpha-large",
+        tier: "large-reasoning",
+        available: false
+      },
+      {
+        providerId: "provider-beta",
+        modelProfileId: "beta-small",
+        tier: "small-fast",
+        available: true
+      }
+    ]
+  });
+
+  assert.equal(decision.status, "unavailable");
+});

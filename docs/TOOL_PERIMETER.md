@@ -19,7 +19,7 @@ A connector should define:
 - output schema
 - audit category
 
-See [`tool-connector.example.json`](../examples/contracts/tool-connector.example.json).
+See [`tool-connector.example.json`](../examples/contracts/tool-connector.example.json). The matching TypeScript interface is `ToolConnector` in `runtime-kernel/contracts/toolConnector.ts`.
 
 ## Recommended Connector Classes
 

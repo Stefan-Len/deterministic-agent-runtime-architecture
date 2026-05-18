@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "eventId": "ledger_01J00000000000000000000004",
+  "eventId": "ledger_0123456789abcdef0123456789abcdef",
   "timestamp": "2026-01-01T12:00:00.000Z",
   "eventType": "approval.requested",
   "actorId": "runtime",

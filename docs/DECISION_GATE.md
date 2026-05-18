@@ -35,12 +35,12 @@ Terminal states should not be silently rewritten.
 
 ## Preflight Checks
 
-After approval, preflight still runs. Approval is necessary but not sufficient.
+Approval records the operator decision. Preflight checks whether that approved work still satisfies the runtime policy.
 
 Typical checks:
 
 - approval is approved
-- approval level is valid
+- approval level is one of `operator`, `maintainer`, or `system-owner`
 - recovery point is prepared when required
 - proposed changes are present
 - allowed paths match the artifact

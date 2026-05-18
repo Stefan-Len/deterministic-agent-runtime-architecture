@@ -15,7 +15,15 @@ export interface ProviderRoutingInput {
   readonly profiles: readonly ProviderProfile[];
 }
 
-export interface SelectedProviderDecision {
+export interface ProviderDecisionMetadata {
+  readonly schemaVersion?: 1;
+  readonly decisionId?: string;
+  readonly actionId?: string;
+  readonly payloadHash?: string;
+  readonly rawPayloadStored?: false;
+}
+
+export interface SelectedProviderDecision extends ProviderDecisionMetadata {
   readonly status: "selected";
   readonly providerId: string;
   readonly modelProfileId: string;
@@ -23,7 +31,7 @@ export interface SelectedProviderDecision {
   readonly fallbackChain: readonly string[];
 }
 
-export interface UnavailableProviderDecision {
+export interface UnavailableProviderDecision extends ProviderDecisionMetadata {
   readonly status: "unavailable";
   readonly decisionReason: string;
   readonly fallbackChain: readonly string[];

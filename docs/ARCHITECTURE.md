@@ -9,8 +9,7 @@ flowchart TD
     Request["Host Request"] --> Contract["Action Contract"]
     Contract --> Context["Context Vault"]
     Context --> Router["Provider Router"]
-    Router --> Planner["Planning Runtime"]
-    Planner --> Artifact["Proposal Artifact"]
+    Router --> Artifact["Proposal Artifact"]
     Artifact --> Gate["Decision Gate"]
     Gate --> Preflight["Execution Preflight"]
     Preflight --> Ledger["Execution Ledger"]
@@ -30,10 +29,6 @@ Owns scoped context records. Retrieval is deterministic and traceable. Records a
 ### Provider Router
 
 Selects a provider/model profile. The provider can produce candidate output, but it does not own the system decision boundary.
-
-### Planning Runtime
-
-Produces normalized artifacts. The planning runtime creates structured outputs that can be audited and validated before any execution path exists.
 
 ### Decision Gate
 
@@ -60,4 +55,4 @@ The implementation has no network calls, no provider SDK, no file writes, and no
 
 ## Design Constraint
 
-No layer should depend on hidden conversational state. Every meaningful decision must be reconstructable from contracts, selected context, provider decision metadata, approval state, and ledger records.
+No layer should depend on hidden conversational state. Kernel decisions should be reconstructable from contracts, selected context, provider decision metadata, approval state, and ledger records.

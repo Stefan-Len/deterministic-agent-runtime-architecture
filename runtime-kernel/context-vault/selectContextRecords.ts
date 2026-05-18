@@ -34,7 +34,7 @@ export function selectContextRecords({
       scope: record.scope,
       selected,
       reason: contextSelectionReason({ selected, matchesAction, matchesScope }),
-      providerEligible: selected && record.visibility === "provider-safe-summary"
+      providerIncluded: selected && record.visibility === "provider-safe-summary"
     };
   });
 
@@ -72,7 +72,7 @@ function contextSelectionReason({
     return "scope-mismatch";
   }
 
-  return "not-selected";
+  return "scope-mismatch";
 }
 
 function compareContextRecords(

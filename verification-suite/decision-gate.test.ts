@@ -8,6 +8,7 @@ import { buildPreflightResult } from "../runtime-kernel/index.ts";
 
 const approvedTicket = {
   approvalId: "approval_01",
+  approvalLevel: "operator" as const,
   decision: "approved" as const,
   requiresRecoveryPointBeforeWrite: true,
   allowedPaths: ["runtime-kernel/**", "verification-suite/**"],
@@ -46,4 +47,29 @@ test("blocks paths and file types outside the approval policy", () => {
   assert.equal(result.status, "blocked");
   assert.ok(result.blockReasons.includes("path-not-allowed"));
   assert.ok(result.blockReasons.includes("file-type-not-allowed"));
+});
+
+test("blocks when the approval ticket is not approved", () => {
+  const result = buildPreflightResult({
+    approvalTicket: {
+      ...approvedTicket,
+      decision: "pending"
+    },
+    recoveryPoints: [{ approvalId: "approval_01", status: "prepared" }],
+    proposedChanges: [{ path: "runtime-kernel/decision-gate/buildPreflightResult.ts" }]
+  });
+
+  assert.equal(result.status, "blocked");
+  assert.ok(result.blockReasons.includes("approval-not-approved"));
+});
+
+test("blocks empty proposed changes", () => {
+  const result = buildPreflightResult({
+    approvalTicket: approvedTicket,
+    recoveryPoints: [{ approvalId: "approval_01", status: "prepared" }],
+    proposedChanges: []
+  });
+
+  assert.equal(result.status, "blocked");
+  assert.ok(result.blockReasons.includes("empty-proposed-changes"));
 });

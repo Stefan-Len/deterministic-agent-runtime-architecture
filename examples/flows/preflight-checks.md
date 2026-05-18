@@ -2,14 +2,4 @@
 
 A preflight result should explain every check, not only the final outcome.
 
-Recommended checks:
-
-- approval decision is approved
-- approval level is sufficient
-- recovery point is prepared when required
-- proposed changes are present
-- allowed paths match the proposed changes
-- allowed file types match the proposed changes
-- path boundary is intact
-
-A blocked result should include a stable reason code.
+The canonical check categories are documented in [`docs/DECISION_GATE.md`](../../docs/DECISION_GATE.md). This example flow keeps the rule simple: a blocked result must include a stable reason code and enough context for the host UI to explain the block without re-running the provider.
