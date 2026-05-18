@@ -1,0 +1,14 @@
+%% deterministic-agent-runtime-architecture
+%% Copyright (c) 2026 Stefan Len
+%% SPDX-License-Identifier: MIT
+
+flowchart TD
+    Host["Host Surface"] --> Runtime["Runtime Contract Layer"]
+    Runtime --> Vault["Context Vault"]
+    Vault --> Router["Provider Router"]
+    Router --> Planner["Planning Runtime"]
+    Planner --> Artifact["Normalized Artifact"]
+    Artifact --> Decision["Decision Gate"]
+    Decision --> Preflight["Execution Preflight"]
+    Preflight --> Ledger["Execution Ledger"]
+    Preflight --> Recovery["Recovery Point"]

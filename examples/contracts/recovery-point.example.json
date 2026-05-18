@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "recoveryPointId": "recovery_01J00000000000000000000007",
+  "approvalId": "approval_01J00000000000000000000001",
+  "status": "prepared",
+  "createdAt": "2026-01-01T12:00:00.000Z",
+  "metadata": {
+    "changeSetId": "artifact_01J00000000000000000000002",
+    "contentSnapshotStored": false,
+    "rollbackExecutionStored": false
+  }
+}

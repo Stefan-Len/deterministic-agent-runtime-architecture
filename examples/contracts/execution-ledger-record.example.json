@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "eventId": "ledger_01J00000000000000000000004",
+  "timestamp": "2026-01-01T12:00:00.000Z",
+  "eventType": "approval.requested",
+  "actorId": "runtime",
+  "actionId": "runtime.plan-change-set",
+  "workItemId": "work_01J00000000000000000000005",
+  "correlationId": "corr_01J00000000000000000000006",
+  "summary": {
+    "approvalId": "approval_01J00000000000000000000001",
+    "artifactId": "artifact_01J00000000000000000000002",
+    "requiresRecoveryPointBeforeWrite": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "approvalId": "approval_01J00000000000000000000001",
+  "actionId": "runtime.plan-change-set",
+  "artifactId": "artifact_01J00000000000000000000002",
+  "approvalLevel": "operator",
+  "decision": "pending",
+  "requiresRecoveryPointBeforeWrite": true,
+  "allowedPaths": [
+    "runtime-kernel/**",
+    "verification-suite/**"
+  ],
+  "allowedFileTypes": [".ts", ".md", ".json"],
+  "createdAt": "2026-01-01T12:00:00.000Z"
+}

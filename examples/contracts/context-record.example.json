@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "recordId": "context.runtime-boundary.contracts",
+  "scope": "architecture",
+  "visibility": "provider-safe-summary",
+  "source": "maintained-record",
+  "selectionTags": ["runtime", "contracts", "safety-boundary"],
+  "contentSummary": "Runtime actions must be represented as explicit contracts before provider routing or tool execution.",
+  "createdAt": "2026-01-01T12:00:00.000Z"
+}

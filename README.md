@@ -1,2 +1,94 @@
-# deterministic-agent-runtime-architecture
-Architecture showcase for deterministic AI agent runtimes featuring approval-gated workflows, provider-routed orchestration, memory-scoped execution, structured observability, and audit-safe system boundaries.
+# Deterministic Agent Runtime Architecture
+
+A public architecture showcase for deterministic agent runtimes.
+
+This repository demonstrates how I design agent systems as bounded runtime architectures: explicit contracts, scoped context, provider routing, decision gates, execution safety, recovery points, and audit-ready records.
+
+The focus is not on a specific product or domain. The focus is the engineering model behind reliable agent execution.
+
+## What This Shows
+
+- how to structure agent actions as versioned runtime contracts
+- how to separate planning, approval, and execution readiness
+- how to keep context retrieval scoped and traceable
+- how to route model providers without giving providers system authority
+- how to design tool connectors with capability boundaries
+- how to record decisions in an execution ledger
+- how to make recovery and rollback prerequisites explicit
+- how to expose UI-ready read models without moving runtime authority into the UI
+- how the same boundaries look as small, executable runtime code
+
+## Runtime Principles
+
+1. Contracts before execution.
+2. Context is selected, not guessed.
+3. Providers are adapters, not authorities.
+4. Tools run inside a perimeter.
+5. Writes require approval, preflight, and recovery readiness.
+6. Audit records are structured, not narrative afterthoughts.
+7. UI surfaces consume contracts; they do not own runtime logic.
+
+## Repository Map
+
+| Area | Purpose |
+| --- | --- |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Runtime layer overview. |
+| [`docs/RUNTIME_CONTRACTS.md`](docs/RUNTIME_CONTRACTS.md) | Core contract model for actions, sessions, and work items. |
+| [`docs/DECISION_GATE.md`](docs/DECISION_GATE.md) | Approval and preflight boundary. |
+| [`docs/CONTEXT_VAULT.md`](docs/CONTEXT_VAULT.md) | Scoped context and memory retrieval model. |
+| [`docs/PROVIDER_ROUTER.md`](docs/PROVIDER_ROUTER.md) | Provider/model routing boundary. |
+| [`docs/TOOL_PERIMETER.md`](docs/TOOL_PERIMETER.md) | Tool connector capability model. |
+| [`docs/OBSERVABILITY.md`](docs/OBSERVABILITY.md) | Execution ledger, structured logs, and audit records. |
+| [`docs/RECOVERY_MODEL.md`](docs/RECOVERY_MODEL.md) | Snapshot and recovery point prerequisites. |
+| [`docs/UI_CONTRACTS.md`](docs/UI_CONTRACTS.md) | UI-ready read models and host boundary. |
+| [`examples/contracts/`](examples/contracts) | Sanitized contract examples. |
+| [`examples/flows/`](examples/flows) | Example runtime flows. |
+| [`diagrams/`](diagrams) | Mermaid architecture diagrams. |
+| [`runtime-kernel/`](runtime-kernel) | Small executable kernel for context selection, provider routing, preflight checks, and ledger records. |
+| [`verification-suite/`](verification-suite) | Zero-dependency Node verification suite for the runtime kernel. |
+
+## Executable Kernel
+
+The repository includes a compact runtime kernel. It is intentionally pure and dependency-free:
+
+- `context-vault/selectContextRecords.mjs` selects scoped context and excludes local-only records from provider context
+- `decision-gate/buildPreflightResult.mjs` evaluates approval, recovery, path, and file type checks
+- `provider-router/chooseProviderProfile.mjs` makes deterministic provider-profile decisions
+- `execution-ledger/createLedgerRecord.mjs` creates stable ledger ids from canonical event input
+
+Run the verification suite:
+
+```bash
+npm run verify
+```
+
+## Example Contracts
+
+The examples are intentionally sanitized. They show structure, not business logic.
+
+- [`action-contract.example.json`](examples/contracts/action-contract.example.json)
+- [`approval-ticket.example.json`](examples/contracts/approval-ticket.example.json)
+- [`context-record.example.json`](examples/contracts/context-record.example.json)
+- [`provider-decision.example.json`](examples/contracts/provider-decision.example.json)
+- [`tool-connector.example.json`](examples/contracts/tool-connector.example.json)
+- [`execution-ledger-record.example.json`](examples/contracts/execution-ledger-record.example.json)
+- [`recovery-point.example.json`](examples/contracts/recovery-point.example.json)
+
+## Intentional Boundaries
+
+This repository does not include:
+
+- proprietary product logic
+- private operational data
+- provider payloads
+- secrets
+- runnable production backend code
+- write-capable execution code
+- domain-specific workflows
+
+The artifact is the system shape: the runtime boundaries, safety model, and contract discipline.
+
+## Author
+
+Stefan Len  
+stefanlen@qde-systems.com

@@ -1,0 +1,12 @@
+%% deterministic-agent-runtime-architecture
+%% Copyright (c) 2026 Stefan Len
+%% SPDX-License-Identifier: MIT
+
+flowchart TD
+    Artifact["Normalized Artifact"] --> Ticket["Approval Ticket"]
+    Ticket --> Pending["Pending Decision"]
+    Pending --> Approved["Approved"]
+    Pending --> Rejected["Rejected"]
+    Approved --> Preflight["Preflight Checks"]
+    Preflight --> Ready["Execution Ready"]
+    Preflight --> Blocked["Blocked With Reason"]

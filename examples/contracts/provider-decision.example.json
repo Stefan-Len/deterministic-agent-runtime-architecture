@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "decisionId": "provider_decision_01J00000000000000000000003",
+  "actionId": "runtime.plan-change-set",
+  "providerId": "provider-alpha",
+  "modelProfileId": "large-reasoning-default",
+  "decisionReason": "Action requires structured planning and cross-file reasoning.",
+  "fallbackChain": ["provider-alpha", "provider-beta", "local-reviewer"],
+  "payloadHash": "sha256:example-redacted-payload-hash",
+  "rawPayloadStored": false
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "connectorId": "repository.status-reader",
+  "title": "Repository Status Reader",
+  "capabilityClass": "repository",
+  "allowedActions": ["status.read", "diff.read", "log.read"],
+  "mode": "read-only",
+  "approvalRequired": false,
+  "resourceBoundary": {
+    "type": "workspace-root",
+    "allowlist": ["./"]
+  },
+  "timeoutMs": 10000,
+  "outputSchema": "repository-status-summary",
+  "auditCategory": "tool.read"
+}

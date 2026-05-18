@@ -1,0 +1,10 @@
+%% deterministic-agent-runtime-architecture
+%% Copyright (c) 2026 Stefan Len
+%% SPDX-License-Identifier: MIT
+
+flowchart TD
+    Records["Context Records"] --> Selector["Deterministic Selector"]
+    Selector --> Local["Local-Only Context"]
+    Selector --> Safe["Provider-Safe Summary"]
+    Safe --> Provider["Provider Adapter"]
+    Local --> Runtime["Runtime Checks"]

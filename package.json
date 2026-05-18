@@ -1,0 +1,14 @@
+{
+  "name": "deterministic-agent-runtime-architecture",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Architecture showcase for deterministic agent runtimes with explicit contracts and execution safety boundaries.",
+  "scripts": {
+    "verify": "node --test verification-suite/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

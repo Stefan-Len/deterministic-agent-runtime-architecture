@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "actionId": "runtime.plan-change-set",
+  "title": "Plan Change Set",
+  "inputSchema": {
+    "type": "object",
+    "required": ["requestSummary", "workspaceRef"],
+    "properties": {
+      "requestSummary": { "type": "string" },
+      "workspaceRef": { "type": "string" }
+    }
+  },
+  "requiredContextScopes": ["architecture", "coding-standard", "active-workspace"],
+  "allowedProviderTiers": ["large-reasoning", "local-review"],
+  "allowedToolCapabilities": ["docs.read", "repository.diff.read"],
+  "outputArtifactType": "change-set-proposal",
+  "approvalRequired": true,
+  "recoveryRequiredBeforeWrite": true,
+  "auditCategory": "planning"
+}
