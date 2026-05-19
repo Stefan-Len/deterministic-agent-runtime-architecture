@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="120" viewBox="0 0 920 120" role="img" aria-labelledby="title desc">
+  <title id="title">Deterministic agent runtime posture diagram</title>
+  <desc id="desc">A static runtime diagram showing Host Request, Action Contract, Context Vault, Provider Router, Proposal Artifact, Decision Gate, Execution Preflight, Execution Ledger, and Recovery Point.</desc>
+  <rect width="920" height="120" fill="#0d1117"/>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="8" fill="#f0f6fc" text-anchor="middle">
+    <g stroke="#7d8590" stroke-width="1" fill="#161b22">
+      <rect x="18" y="40" width="78" height="26"/>
+      <rect x="122" y="40" width="90" height="26"/>
+      <rect x="238" y="40" width="84" height="26"/>
+      <rect x="348" y="40" width="94" height="26"/>
+      <rect x="468" y="40" width="104" height="26"/>
+      <rect x="598" y="40" width="86" height="26"/>
+      <rect x="710" y="40" width="112" height="26"/>
+      <rect x="850" y="18" width="56" height="26"/>
+      <rect x="850" y="76" width="56" height="26"/>
+    </g>
+    <g stroke="#7d8590" stroke-width="1.1" fill="none" stroke-linecap="square">
+      <line x1="96" y1="53" x2="122" y2="53"/>
+      <line x1="212" y1="53" x2="238" y2="53"/>
+      <line x1="322" y1="53" x2="348" y2="53"/>
+      <line x1="442" y1="53" x2="468" y2="53"/>
+      <line x1="572" y1="53" x2="598" y2="53"/>
+      <line x1="684" y1="53" x2="710" y2="53"/>
+      <path d="M822 53 C832 53 836 31 850 31"/>
+      <path d="M822 53 C832 53 836 89 850 89"/>
+    </g>
+    <text x="57" y="56">Host Request</text>
+    <text x="167" y="56">Action Contract</text>
+    <text x="280" y="56">Context Vault</text>
+    <text x="395" y="56">Provider Router</text>
+    <text x="520" y="56">Proposal Artifact</text>
+    <text x="641" y="56">Decision Gate</text>
+    <text x="766" y="56">Execution Preflight</text>
+    <text x="878" y="34">Execution Ledger</text>
+    <text x="878" y="92">Recovery Point</text>
+  </g>
+</svg>

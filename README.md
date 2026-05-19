@@ -24,17 +24,7 @@ The focus is not on a specific product or domain. The focus is the engineering m
 - Context, provider choice, and tool access are explicit runtime decisions.
 - Writes require approval, preflight, and recovery readiness.
 
-```mermaid
-flowchart LR
-    Request["Host Request"] --- Contract["Action Contract"]
-    Contract --- Context["Context Vault"]
-    Context --- Router["Provider Router"]
-    Router --- Artifact["Proposal Artifact"]
-    Artifact --- Gate["Decision Gate"]
-    Gate --- Preflight["Execution Preflight"]
-    Preflight --- Ledger["Execution Ledger"]
-    Preflight --- Recovery["Recovery Point"]
-```
+![Runtime posture diagram](assets/runtime-posture-diagram.svg)
 
 ## Repository Map
 
